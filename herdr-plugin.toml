@@ -1,0 +1,35 @@
+id = "duncanjsp.herdr-jj-sidebar"
+name = "Herdr JJ Sidebar"
+version = "0.1.0"
+min_herdr_version = "0.9.5"
+description = "Show the nearest jj bookmark and its status in Herdr's sidebar."
+platforms = ["linux", "macos"]
+
+[[startup]]
+command = ["./bin/herdr-jj-sidebar.py", "refresh"]
+
+[[actions]]
+id = "refresh"
+title = "Refresh JJ sidebar"
+contexts = ["workspace", "global"]
+command = ["./bin/herdr-jj-sidebar.py", "refresh"]
+
+[[events]]
+on = "workspace.created"
+command = ["./bin/herdr-jj-sidebar.py", "refresh"]
+
+[[events]]
+on = "workspace.focused"
+command = ["./bin/herdr-jj-sidebar.py", "refresh"]
+
+[[events]]
+on = "tab.focused"
+command = ["./bin/herdr-jj-sidebar.py", "refresh"]
+
+[[events]]
+on = "pane.focused"
+command = ["./bin/herdr-jj-sidebar.py", "refresh"]
+
+[[events]]
+on = "pane.agent_status_changed"
+command = ["./bin/herdr-jj-sidebar.py", "refresh"]
