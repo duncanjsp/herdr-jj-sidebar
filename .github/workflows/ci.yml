@@ -7,10 +7,15 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        python: ["3.9", "3.x"]
+        include:
+          # No Python 3.9 builds exist for Ubuntu 26.04+, so pin that job.
+          - python: "3.9"
+            os: ubuntu-24.04
+          - python: "3.x"
+            os: ubuntu-latest
     env:
       JJ_VERSION: 0.46.0
     steps:
